@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useMedia from "use-media";
 import { userData } from "@/utils/userData";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import {
   Navbar as NavbarWrapper,
@@ -58,20 +59,46 @@ export const NavBar = (): JSX.Element => {
 };
 
 export const NavLinks = (): JSX.Element => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleStartClick = () => {
+    if (location.pathname === "/about") {
+      navigate("/");
+      window.scrollTo(0, 0); 
+    } else {
+      window.location.hash = "#home";
+    }
+  };
+
+  const handleAboutClick = () => {
+    navigate("/about");
+    window.scrollTo(0, 0);
+  };
+
+
+  const isHome = location.pathname === '/';
+
   return (
     <NavbarLinks>
-      <Button type="btLink" as="a" color="grey4" href={`#home`}>
-        Home
+      <Button type="btLink" as="a" color="grey4" onClick={handleStartClick}>
+        Inicio
       </Button>
-      <Button type="btLink" as="a" color="grey4" href={`#projects`}>
-        Projects
-      </Button>
-      <Button type="btLink" as="a" color="grey4" href={`#contact`}>
-        Contact
-      </Button>
+      {isHome && (
+      <>
+        <Button type="btLink" as="a" color="grey4" href={`#projects`}>
+        Projetos
+        </Button>
+        <Button type="btLink" as="a" color="grey4" href={`#contact`}>
+          Contato
+        </Button>
+      </>)}
       <Button type="btLink" as="a" color="grey4" href={`#social-media`}>
-        Social Media
+          Mídia Social
       </Button>
+      <Button type="btLink" as="a" color="grey4" onClick={handleAboutClick}>
+        Sobre mim
+      </Button>      
     </NavbarLinks>
   );
 };
