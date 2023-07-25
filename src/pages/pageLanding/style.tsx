@@ -2,9 +2,10 @@ import { styled } from "@/styles/stitches.config";
 
 export const Section = styled("section", {
     backgroundColor: "$grey1",
-    height: "100vh",
+    height: "100%",
     marginTop: "82px",
     paddingTop: "82px",
+    paddingBottom: "50px",
     display: "flex",
     justifyContent: "center"
 })

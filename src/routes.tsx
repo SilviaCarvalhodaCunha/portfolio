@@ -10,7 +10,6 @@ export const AppRouter = (): JSX.Element => {
       <Route path="/about" element={<Outlet />}>
         <Route index element={<LandingPage />} />
       </Route>
-
     </Routes>
   );
 };
